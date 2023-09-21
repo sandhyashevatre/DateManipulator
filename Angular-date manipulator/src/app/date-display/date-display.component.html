@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+    <!-- Date Manipulator -->
+    <div class="calendar-container">
+      <h2>Your Calendar</h2>
+      <form (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label for="dateInput">Select a Date:</label>
+          <input type="date" id="dateInput" class="form-control" [(ngModel)]="selectedDate" name="selectedDate" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+      <div *ngIf="submitted">
+        <p>You selected: {{ selectedDate  | date:'EEEE, d MMMM yyyy'}}</p>
+
+        <span class="special" *ngIf="isSpecialDay(selectedDate)">
+          {{ getSpecialDayDescription(selectedDate) }}
+        </span>
+
+        <div class="date-buttons">
+          <button class="btn btn-primary" (click)="showPreviousDate()">Previous Date</button>
+          <button class="btn btn-primary" (click)="showNextDate()">Next Date</button>
+        </div>
+      </div>
+    </div>
+  </body>
